@@ -1,0 +1,20 @@
+%%%%%%%%%%%test script
+load('C:\Users\sabhajit singh\Desktop\learning in robotics\project 3\train\train\figure8\imu06')
+imu = imu06(:,2:7);
+%P(O|lamda)
+load('models1.mat','A_','B_','Pi_')
+load('Centroids_vec','vect_data')
+
+  
+   for i = 1:6
+  j = findcentroid(imu,vect_data);
+[~,~,~,loglikelyhood(i) ] = HMM_forwatdBackward(A_{1,i}+0.0001, B_{1,i}+0.0001 , Pi_{1,i}+0.0001, j);
+display(loglikelyhood(i))
+   end
+
+nameGesture={'circle','figure8','fish','hammer','pend','wave'};
+[val,idx]=sort(loglikelyhood,'descend');
+ fprintf ('\nGesture no. %d\n',1);
+ fprintf ('No.1  %s  with log-likelihood = %f\n',nameGesture{idx(1)},loglikelyhood(idx(1)));
+ fprintf ('No.2  %s  with log-likelihood = %f\n',nameGesture{idx(2)},loglikelyhood(idx(2)));
+ fprintf ('No.3  %s  with log-likelihood = %f\n',nameGesture{idx(3)},loglikelyhood(idx(3)));
